@@ -8,8 +8,8 @@ CREATE TABLE blacklist(
 
 CREATE VIEW job AS
 SELECT CONCAT('mysqldump ',
-  COALESCE(GROUP_CONCAT(DISTINCT CONCAT('--ignore-table=', t.tbl, ' ') SEPARATOR ''), ''),
-  COALESCE(GROUP_CONCAT(DISTINCT CONCAT('--ignore-table-data=', d.tbl, ' ') SEPARATOR ''), ''),
+  COALESCE(GROUP_CONCAT(DISTINCT CONCAT('--ignore-table=', TABLE_SCHEMA, '.', t.tbl, ' ') SEPARATOR ''), ''),
+  COALESCE(GROUP_CONCAT(DISTINCT CONCAT('--ignore-table-data=', TABLE_SCHEMA, '.', d.tbl, ' ') SEPARATOR ''), ''),
   TABLE_SCHEMA
 ) cmd
 FROM information_schema.tables i
