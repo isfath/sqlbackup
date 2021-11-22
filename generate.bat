@@ -1,0 +1,1 @@
+echo SELECT * FROM batch |mysql --batch --raw -u root sqlbackup >backup.bat

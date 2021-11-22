@@ -1,4 +1,5 @@
 *.vbs eol=crlf
+*.bat eol=crlf
 
 #we don't use T-SQL
 *.sql linguist-language=sql
