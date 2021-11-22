@@ -17,3 +17,13 @@ LEFT JOIN blacklist d ON d.sch=i.TABLE_SCHEMA AND d.ignore_data
 LEFT JOIN blacklist t ON t.sch=i.TABLE_SCHEMA AND NOT t.ignore_data
 WHERE TABLE_SCHEMA NOT IN ('information_schema', 'mysql', 'performance_schema', 'sys')
 GROUP BY i.TABLE_SCHEMA;
+
+CREATE TABLE log(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  cmd TEXT NOT NULL,
+  err TINYTEXT,
+  errorlevel INT NOT NULL,
+  ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT IGNORE INTO blacklist VALUES ('sqlbackup', 'log', 'useless', 1);
